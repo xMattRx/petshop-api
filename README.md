@@ -123,9 +123,7 @@ Authorization: Bearer petshop123
 - ✅ Projeto funcional com rotas REST
 - ✅ Middleware de autenticação
 - ✅ Tipagem com TypeScript
-- ⏳ Banco de dados simulado (em memória)
-- ❌ Testes automatizados (em breve)
-- ❌ Integração com banco real (em breve)
+- ✅ Banco de dados simulado (em memória)
 
 ---
 
