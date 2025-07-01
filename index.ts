@@ -1,1 +1,0 @@
-console.log('Servidor rodando em http://localhost:3000')
