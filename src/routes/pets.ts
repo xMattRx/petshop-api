@@ -1,10 +1,10 @@
-import { Router } from 'express';
-import { authMiddleware } from '../middleware/auth';
+import { Router } from "express";
+import { createPetHandler, vaccinatePetHandler } from "../controllers/pet.controler";
+
 
 const router = Router();
 
-router.get('/ping', authMiddleware, (req, res) => {
-    res.status(200).json({ message: 'pong 🏓' });
-});
+router.post('/', createPetHandler);
+router.post('/:id/vaccinate', vaccinatePetHandler);
 
 export default router;
