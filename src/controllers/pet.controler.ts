@@ -31,3 +31,21 @@ export function vaccinatePetHandler(req: Request, res: Response): void {
   pet.vaccinated = true;
   res.json({ message: 'Pet vacinado com sucesso', pet });
 }
+
+// GET /pets
+export function listPetsHandler(req: Request, res: Response): void {
+  res.status(200).json(pets);
+}
+
+// GET /pets/:id
+export function getPetByIdHandler(req: Request, res: Response): void {
+  const id = Number(req.params.id);
+  const pet = pets.find(p => p.id === id);
+
+  if (!pet) {
+    res.status(404).json({ message: 'Pet não encontrado' });
+    return;
+  }
+
+  res.json(pet);
+}
