@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createPetHandler, getPetByIdHandler, listPetsHandler, updatePetHandler, updateVaccinationStatusHandler, vaccinatePetHandler } from "../controllers/pet.controler";
+import { createPetHandler, deletePetHandler, deleteUnvaccinatedPetsHandler, getPetByIdHandler, listPetsHandler, updatePetHandler, updateVaccinationStatusHandler, vaccinatePetHandler } from "../controllers/pet.controler";
 
 
 const router = Router();
@@ -10,5 +10,7 @@ router.get('/', listPetsHandler);
 router.get('/:id', getPetByIdHandler);
 router.put('/:id', updatePetHandler);
 router.put('/:id/vaccination', updateVaccinationStatusHandler);
+router.delete('/:id', deletePetHandler);
+router.delete('/unvaccinated/all', deleteUnvaccinatedPetsHandler);
 
 export default router;

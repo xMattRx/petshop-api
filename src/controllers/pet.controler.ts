@@ -81,3 +81,29 @@ export function updateVaccinationStatusHandler(req: Request, res: Response): voi
   pet.vaccinated = !!vaccinated;
   res.json(pet);
 }
+
+// DELETE /pets/:id
+export function deletePetHandler(req: Request, res: Response): void {
+  const id = Number(req.params.id);
+  const index = pets.findIndex(p => p.id === id);
+
+  if (index === -1) {
+    res.status(404).json({ message: 'Pet não encontrado' });
+    return;
+  }
+
+  pets.splice(index, 1);
+  res.status(204).send();
+}
+
+// DELETE /pets/unvaccinated/all
+export function deleteUnvaccinatedPetsHandler(req: Request, res: Response): void {
+  const initialLength = pets.length;
+  const remainingPets = pets.filter(p => p.vaccinated);
+  const removed = initialLength - remainingPets.length;
+
+  pets.length = 0;
+  pets.push(...remainingPets);
+
+  res.json({ message: `${removed} pets não vacinados foram removidos.` });
+}
