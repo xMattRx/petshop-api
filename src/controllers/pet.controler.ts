@@ -49,3 +49,35 @@ export function getPetByIdHandler(req: Request, res: Response): void {
 
   res.json(pet);
 }
+
+// PUT /pets/:id
+export function updatePetHandler(req: Request, res: Response): void {
+  const id = Number(req.params.id);
+  const { name, breed } = req.body;
+
+  const pet = pets.find(p => p.id === id);
+  if (!pet) {
+    res.status(404).json({ message: 'Pet não encontrado' });
+    return;
+  }
+
+  if (name) pet.name = name;
+  if (breed) pet.breed = breed;
+
+  res.json(pet);
+}
+
+// PUT /pets/:id/vaccination
+export function updateVaccinationStatusHandler(req: Request, res: Response): void {
+  const id = Number(req.params.id);
+  const { vaccinated } = req.body;
+
+  const pet = pets.find(p => p.id === id);
+  if (!pet) {
+    res.status(404).json({ message: 'Pet não encontrado' });
+    return;
+  }
+
+  pet.vaccinated = !!vaccinated;
+  res.json(pet);
+}
