@@ -1,11 +1,13 @@
 import express from 'express';
+import { authMiddleware } from './middleware/auth';
 import petsRouter from './routes/pets';
 import pingRouter from './routes/ping';
-import { authMiddleware } from './middleware/auth';
+import { setupSwagger } from './swagger';
 
 const app = express();
 
 app.use(express.json());
+setupSwagger(app);
 
 app.use('/', pingRouter);
 
